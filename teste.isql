@@ -1,0 +1,5 @@
+SELECT nome, sobrenome 
+FROM _pessoas 
+WHERE sexo = 'M' AND 
+    idade BETWEEN 18 AND 35 
+ORDER BY nome DESC;
