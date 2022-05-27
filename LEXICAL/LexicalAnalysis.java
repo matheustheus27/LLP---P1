@@ -79,12 +79,9 @@ public class LexicalAnalysis implements AutoCloseable {
                     } else if(c == ';') {
                         lex.token += (char) c;
                         state = 7;
-                    } else if(c == '_') {
+                    } else if(c == '_' || Character.isLetter(c)) {
                         lex.token += (char) c;
                         state = 2;
-                    } else if(Character.isLetter(c)) {
-                        lex.token += (char) c;
-                        state = 9;
                     } else if(Character.isDigit(c)) {
                         lex.token += (char) c;
                         state = 3;
@@ -112,16 +109,6 @@ public class LexicalAnalysis implements AutoCloseable {
                     if(c == '_' || Character.isLetter(c) || Character.isDigit(c)) {
                         lex.token += (char) c;
                         state = 2;
-                    } else {
-                        Ungetc(c);
-                        lex.type = TokenType.TK_NAME;
-                        state = 8;
-                    }
-                break;
-                case 9:
-                    if(Character.isLetter(c)) {
-                        lex.token += (char) c;
-                        state = 9;
                     } else {
                         Ungetc(c);
                         state = 7;
